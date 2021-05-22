@@ -1,7 +1,6 @@
 // Assignment Code
  var generateBtn = document.querySelector("#generate");
- //var charsets = 'abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMNOPRSTUVWXYZ123456789!@#$%^&';
- //generateBtn.addEventListener("click", writePassword);
+ 
 
  
  // Write password to the #password input
