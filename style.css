@@ -1,15 +1,7 @@
-*,
-*::before,
-*::after {
+ *, 
+ *::before,
+ *::after {
   box-sizing: border-box;
-}
-
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -52,6 +44,7 @@ header {
 
 .card-body {
   min-height: 100px;
+
 }
 
 .card-footer {
@@ -66,11 +59,6 @@ header {
   height: 2px;
 }
 
-.card-footer::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
 
 .btn {
   border: none;
@@ -91,10 +79,6 @@ header {
 button[disabled] {
   cursor: default;
   background: #c0c7cf;
-}
-
-.float-right {
-  float: right;
 }
 
 #password {
