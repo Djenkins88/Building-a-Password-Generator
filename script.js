@@ -1,4 +1,4 @@
-// Assignmen
+/* Assignmen
 var generateBtn = document.querySelector("#generate");
 
 
@@ -96,4 +96,4 @@ function writePassword() {
   //Add event listener to generate button
 generateBtn.addEventListener("click", writePassword); {
   var numberArr = numberArr;
-}
+}*/
