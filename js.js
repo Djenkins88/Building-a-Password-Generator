@@ -1,12 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",", ")", "(", "}", "{", "]", "[", "~", "-", "_", "."];
 var lowerCasedCharacters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCasedCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var NumericalCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialCharacters = ["@", "%", "+", "/", "'", "!", "#", "$", "^", "?", ":", ",", ")", "(", "}", "{", "]", "[", "~", "-", "_", "."];
 
-function validateandgetPasswordOptions() {
+
+function confirmPasswordCharacters() {
     var passwordLength = prompt('How many characters would you like you password to be?')
     passwordLength = parseInt(passwordLength);
 
@@ -29,11 +30,23 @@ function validateandgetPasswordOptions() {
     var hasNumericalCharacters = confirm('Click Ok to confirm numerical characters');
     var haslowerCasedCharacters = confirm('Click Ok to confirm lower cased characters');
     var hasupperCasedCharacters = confirm('Click Ok to confirm upper cased characters');
-
-    if (hasSpecialCharacters === false && hasNumericalCharacters === false && haslowerCasedCharacters === false && hasupperCasedCharacters === false) {
+    
+      if (hasSpecialCharacters === false) {
         alert('You must selected at least one character type');
         return;
-    }
+      }
+      if (hasNumericalCharacters === false) {
+        alert('You must selected at least one character type');
+        return;
+      }
+      if (haslowerCasedCharacters === false) {
+        alert('You must selected at least one character type');
+        return; 
+      }
+      if (hasupperCasedCharacters === false) {
+        alert('You must selected at least one character type');
+        return;
+      }
     
     var passwordOptions = {
         passwordLength,
@@ -53,8 +66,9 @@ function validateandgetPasswordOptions() {
     }
 
     function generatePassword() {
-      var passwordOptions = validateandgetPasswordOptions();
+      var passwordOptions = confirmPasswordCharacters();
       
+    
       var userPassword = [];
 
       var allPossibleCharacters = [];
@@ -64,12 +78,13 @@ function validateandgetPasswordOptions() {
       if (passwordOptions.hasSpecialCharacters === true) {
         allPossibleCharacters = allPossibleCharacters.concat(specialCharacters);
         guaranteedCharacters = guaranteedCharacters.concat(getRandomElement(specialCharacters));
+        
       }
       
       if (passwordOptions.hasNumericalCharacters === true) {
         allPossibleCharacters = allPossibleCharacters.concat(NumericalCharacters);
         guaranteedCharacters = guaranteedCharacters.concat(getRandomElement(NumericalCharacters));
-      }
+     }
       
       if (passwordOptions.hasupperCasedCharacters === true) {
         allPossibleCharacters = allPossibleCharacters.concat(upperCasedCharacters);
@@ -79,25 +94,24 @@ function validateandgetPasswordOptions() {
      if (passwordOptions.haslowerCasedCharacters === true) {
         allPossibleCharacters = allPossibleCharacters.concat(lowerCasedCharacters);
         guaranteedCharacters = guaranteedCharacters.concat(getRandomElement(lowerCasedCharacters));
+    }
+      
+     for (var i = 0; i < passwordOptions.passwordLength; i++) {
+        var possibleCharacter = getRandomElement(allPossibleCharacters);
+        userPassword = userPassword.concat(possibleCharacter);
      }
-      console.log('starting loop');
-     for (var i = 0; i < passwordOptions.passwordlength; i++) {
-        var possibleCharacters = getRandomElement(allPossibleCharacters);
-        userPassword = userPassword.concat(possibleCharacters);
-     }
+
         for (var i = 0; i < guaranteedCharacters.length; i++) {
           userPassword[i] = guaranteedCharacters[i];
             
-            console.log(userPassword);
             return userPassword.join('');
-            
-
         }
     }
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  console.log(password);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
